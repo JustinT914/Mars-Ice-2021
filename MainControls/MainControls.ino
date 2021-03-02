@@ -121,8 +121,15 @@ void drillDown(void)
     delayMicroseconds(500);
     if(Serial.available())
       sref = Serial.parseInt();
-      
-  } 
+    if (force>120)
+  {
+     //Since HIGH is down and LOW is up youd want the time that the drill goes up less than the time it does down.
+     digitalWrite(dirPin, HIGH);
+     delayMicroseconds(500);
+     digitalWrite(dirPin, LOW);
+     delayMicroseconds(250);
+  }
+  }
 }
 
 void retract(void)
